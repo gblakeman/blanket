@@ -1,7 +1,8 @@
 const path = require('path'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
   TerserPlugin = require('terser-webpack-plugin'),
-  OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+  OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
+  WebpackAssetsManifest = require('webpack-assets-manifest');
 
 module.exports = {
   context: __dirname,
@@ -12,7 +13,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
   },
   resolve: {
     extensions: ['.js', '.scss', '.css', '.json'],
@@ -29,14 +30,14 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf)$/,
         loader: 'file-loader?limit=100000',
         query: {
-          name: 'fonts/[name].[ext]',
+          name: '[name].[contenthash].[ext]',
         },
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         loader: 'file-loader',
         query: {
-          name: 'images/[name].[ext]',
+          name: '[name].[contenthash].[ext]',
         },
       },
       {
@@ -58,7 +59,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin({ filename: '[name].css' })],
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
+    new WebpackAssetsManifest(),
+  ],
   optimization: {
     minimizer: [
       new TerserPlugin({
