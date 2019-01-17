@@ -1,5 +1,9 @@
 <?php 
 //clean up <head>
+function wps_deregister_styles() {
+  wp_dequeue_style( 'wp-block-library' );
+  wp_deregister_style( 'wp-block-library' );
+}
 function BLANKET_head_cleanup() {
   // Originally from http://wpengineer.com/1438/wordpress-header/
   remove_action('wp_head', 'feed_links_extra', 3);
@@ -24,6 +28,7 @@ function BLANKET_head_cleanup() {
   remove_filter('comment_text_rss', 'wp_staticize_emoji');
   remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
   add_filter('use_default_gallery_style', '__return_false');
+  add_action('wp_print_styles', 'wps_deregister_styles', 10);
 }
 
 ?>
