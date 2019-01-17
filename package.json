@@ -4,16 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prebuild": "npm run clean",
+    "prebuild": "yarn clean",
     "build": "webpack --mode=production",
     "clean": "rimraf dist",
     "start": "webpack --watch",
-    "dev": "npm run start",
-    "lint": "npm run lint:js; npm run lint:css",
+    "dev": "yarn start",
+    "lint": "yarn lint:js; yarn lint:css",
     "lint:eslint": "eslint './src/**/*.js'",
     "lint:stylelint": "stylelint './src/sass/**/*'",
-    "lint:js": "npm run lint:eslint",
-    "lint:css": "npm run lint:stylelint",
+    "lint:js": "yarn lint:eslint",
+    "lint:css": "yarn lint:stylelint",
     "lint:staged": "lint-staged"
   },
   "lint-staged": {
