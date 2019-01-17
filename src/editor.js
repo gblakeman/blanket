@@ -1,2 +1,2 @@
 /* blanket editor styles  */
-import './sass/editor';
+import './css/editor';

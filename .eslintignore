@@ -4,4 +4,4 @@
 # ignore specific directories
 _/*
 dist/*
-src/scripts/vendor/*
+src/javascript/vendor/*

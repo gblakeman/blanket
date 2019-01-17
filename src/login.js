@@ -1,2 +1,2 @@
 /* blanket login screen styles */
-import './sass/login';
+import './css/login';
