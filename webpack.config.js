@@ -36,7 +36,7 @@ module.exports = {
         test: /\.(png|svg|jpg|gif)$/,
         loader: 'file-loader',
         query: {
-          name: 'img/[name].[ext]',
+          name: 'images/[name].[ext]',
         },
       },
       {
