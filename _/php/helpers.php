@@ -10,7 +10,7 @@
 * @param  string $filename Original name of the file.
 * @return string $filename Hashed name version of a file.
 */
-function get_asset_hash_path( $filename ) {
+function getHashedAsset( $filename ) {
   $manifest_path = get_template_directory_uri() . '/dist/manifest.json';
 
   if ( ! empty( $manifest_path ) ) {
@@ -23,6 +23,13 @@ function get_asset_hash_path( $filename ) {
   }
 
   return $filename;
+}
+
+function getHashedAssetWithPath( $filename ) {
+  $base_path = get_template_directory_uri();
+  $hashed_filename = getHashedAsset($filename);
+  $name_with_path = $base_path . $hashed_filename;
+  return $name_with_path;
 }
 
 function getMetaTitle()
@@ -53,7 +60,7 @@ function getMetaImage()
   if (get_the_post_thumbnail_url( $id )) {
     echo get_the_post_thumbnail_url( $id, 'card' );
   } else {
-    echo get_asset_hash_path( 'test.png' );
+    echo getHashedAsset( 'test.png' );
   }
 }//getMetaImage
 
