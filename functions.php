@@ -1,10 +1,7 @@
 <?php
 
 //constants
-define('BLANKET_THEME', get_template_directory_uri());
-define('BLANKET_URL', get_bloginfo('url'));
-define('BLANKET_IMG_DIR', BLANKET_THEME . '/dist/images/');
-define('BLANKET_SVG_DIR', BLANKET_THEME . '/_/svg/');
+define('BLANKET_SVG_DIR', get_template_directory_uri() . '/_/svg/');
 
 
 //actions & filters
