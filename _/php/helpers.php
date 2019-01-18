@@ -13,11 +13,11 @@
 function getHashedAsset( $filename ) {
   $manifest_path = get_template_directory() . '/dist/manifest.json';
 
-  if ( ! empty( $manifest_path ) ) {
+  if (!empty($manifest_path)) {
     $manifest = json_decode(file_get_contents($manifest_path, FILE_USE_INCLUDE_PATH));
     $clean_filename = basename($filename);
 
-    if ( array_key_exists( $clean_filename, $manifest ) ) {
+    if (array_key_exists($clean_filename, $manifest)) {
       return '/dist/' . $manifest -> $clean_filename;
     }
   }
