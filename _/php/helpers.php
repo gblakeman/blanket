@@ -17,12 +17,16 @@ function getHashedAsset( $filename ) {
     $request  = wp_remote_get( $manifest_path );
     $manifest = json_decode( wp_remote_retrieve_body( $request ) );
 
-    if ( array_key_exists( $filename, $manifest ) ) {
-      return '/dist/' . $manifest->$filename;
+    // throw new Exception( basename('icons/android-icon-sm.png'));
+    $clean_filename = basename($filename);
+
+    if ( array_key_exists( $clean_filename, $manifest ) ) {
+      return '/dist/' . $manifest -> $clean_filename;
     }
   }
 
-  return $filename;
+  // fall back to src images if the file cannot be found in the manifest
+  return '/src/images/' . $filename;
 }
 
 function getHashedAssetWithPath( $filename ) {
