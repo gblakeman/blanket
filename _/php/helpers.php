@@ -13,12 +13,14 @@
 function getHashedAsset( $filename ) {
   $manifest_path = get_template_directory() . '/dist/manifest.json';
 
-  if (!empty($manifest_path)) {
-    $manifest = json_decode(file_get_contents($manifest_path, FILE_USE_INCLUDE_PATH));
+  if (!empty($manifest_path) && file_exists($manifest_path)) {
+    $manifest = json_decode(file_get_contents($manifest_path, FILE_USE_INCLUDE_PATH), true);
     $clean_filename = basename($filename);
 
-    if (array_key_exists($clean_filename, $manifest)) {
-      return '/dist/' . $manifest -> $clean_filename;
+    if (!empty($manifest) &&
+      is_array($manifest) &&
+      array_key_exists($clean_filename, $manifest)) {
+      return '/dist/' . $manifest[$clean_filename];
     }
   }
 
@@ -61,7 +63,7 @@ function getMetaImage()
   if (get_the_post_thumbnail_url( $id )) {
     echo get_the_post_thumbnail_url( $id, 'card' );
   } else {
-    echo getHashedAsset( 'test.png' );
+    echo getHashedAssetWithPath('test.png');
   }
 }//getMetaImage
 
