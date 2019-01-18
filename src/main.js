@@ -8,8 +8,7 @@ import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 import './javascript/polyfills';
 
-//vendors
-//import '../vendor/noframework.waypoints.js';
+// vendors
 
-//custom js
+// site
 import './javascript/app';
