@@ -11,16 +11,13 @@
 * @return string $filename Hashed name version of a file.
 */
 function getHashedAsset( $filename ) {
-  $manifest_path = get_template_directory_uri() . '/dist/manifest.json';
+  $manifest_path = get_template_directory() . '/dist/manifest.json';
 
-  if ( ! empty( $manifest_path ) ) {
-    $request  = wp_remote_get( $manifest_path );
-    $manifest = json_decode( wp_remote_retrieve_body( $request ) );
-
-    // throw new Exception( basename('icons/android-icon-sm.png'));
+  if (!empty($manifest_path)) {
+    $manifest = json_decode(file_get_contents($manifest_path, FILE_USE_INCLUDE_PATH));
     $clean_filename = basename($filename);
 
-    if ( array_key_exists( $clean_filename, $manifest ) ) {
+    if (array_key_exists($clean_filename, $manifest)) {
       return '/dist/' . $manifest -> $clean_filename;
     }
   }
