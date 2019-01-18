@@ -1,18 +1,19 @@
 const path = require('path'),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-  TerserPlugin = require('terser-webpack-plugin'),
   OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
+  TerserPlugin = require('terser-webpack-plugin'),
   WebpackAssetsManifest = require('webpack-assets-manifest');
 
 module.exports = {
-  context: __dirname,
+  context: __dirname, // eslint-disable-line no-undef
   entry: {
     main: './src/main.js',
     editor: './src/editor.js',
     login: './src/login.js',
+    images: './src/images.js',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // eslint-disable-line no-undef
     filename: '[name].[contenthash].js',
   },
   resolve: {
@@ -58,6 +59,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  performance: {
+    maxAssetSize: 2000000, // ~ 2mb
   },
   plugins: [
     new MiniCssExtractPlugin({

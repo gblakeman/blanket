@@ -1,4 +1,4 @@
-/* blanket front end styles and js */
+/* blanket frontend images, styles, and js */
 
 // import styles for compilation
 import './css/main';
