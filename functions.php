@@ -35,13 +35,13 @@ function BLANKET_theme_setup() {
 
 
 // requires & includes
-require get_template_directory() . '/_/php/ajax.php';
-require get_template_directory() . '/_/php/dashboard.php';
-require get_template_directory() . '/_/php/head.php';
-require get_template_directory() . '/_/php/helpers.php';
-require get_template_directory() . '/_/php/posttypes.php';
-require get_template_directory() . '/_/php/scriptsandstyles.php';
-require get_template_directory() . '/_/php/taxonomies.php';
-require get_template_directory() . '/_/php/theme.php';
+require get_template_directory() . '/app/ajax.php';
+require get_template_directory() . '/app/dashboard.php';
+require get_template_directory() . '/app/head.php';
+require get_template_directory() . '/app/helpers.php';
+require get_template_directory() . '/app/posttypes.php';
+require get_template_directory() . '/app/scriptsandstyles.php';
+require get_template_directory() . '/app/taxonomies.php';
+require get_template_directory() . '/app/theme.php';
 
 ?>
