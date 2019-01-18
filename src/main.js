@@ -1,15 +1,14 @@
-/* blanket front end styles and js */
+/* blanket frontend images, styles, and js */
 
 // import styles for compilation
-import './sass/main';
+import './css/main';
 
 // polyfills
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
-import './scripts/polyfills';
+import './javascript/polyfills';
 
-//vendors
-//import '../vendor/noframework.waypoints.js';
+// vendors
 
-//custom js
-import './scripts/app';
+// site
+import './javascript/app';

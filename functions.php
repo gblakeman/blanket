@@ -1,11 +1,7 @@
 <?php
 
 //constants
-define('BLANKET_VERSION', '2.0.1');
-define('BLANKET_THEME', get_stylesheet_directory_uri());
-define('BLANKET_URL', get_bloginfo('url'));
-define('BLANKET_IMG_DIR', BLANKET_THEME . '/_/img/');
-define('BLANKET_SVG_DIR', BLANKET_THEME . '/_/svg/');
+define('BLANKET_SVG_DIR', get_template_directory_uri() . '/_/svg/');
 
 
 //actions & filters
@@ -30,7 +26,7 @@ function BLANKET_theme_setup() {
   add_action('BLANKET_BLANKET_search', 'BLANKET_search_ajax_handler');
   add_action('BLANKET_nopriv_BLANKET_search', 'BLANKET_search_ajax_handler');
   add_action('BLANKET_BLANKET_fetch', 'BLANKET_fetch_ajax_handler');
-	add_action('BLANKET_nopriv_BLANKET_fetch', 'BLANKET_fetch_ajax_handler');
+  add_action('BLANKET_nopriv_BLANKET_fetch', 'BLANKET_fetch_ajax_handler');
 
   //scriptsandstyles.php
   add_action('wp_enqueue_scripts', 'BLANKET_add_scripts');

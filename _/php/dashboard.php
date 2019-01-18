@@ -2,7 +2,7 @@
 //admin screen stuff
 //login styles
 function BLANKET_custom_login_css() {
-  echo '<link rel="stylesheet" type="text/css" href="' . BLANKET_THEME . '/dist/login.css" />';
+  echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/dist/login.css" />';
 }
 
 function BLANKET_custom_loginlogo_url($url) {
@@ -32,7 +32,7 @@ function BLANKET_remove_width_attribute($html) {
 
 //tinymce changes
 function BLANKET_custom_editor_styles() {
-  add_editor_style(BLANKET_THEME . '/dist/editor.css');
+  add_editor_style(get_template_directory_uri() . '/dist/editor.css');
 }
 
 function BLANKET_editor_dash_cleanup() {
