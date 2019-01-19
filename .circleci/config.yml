@@ -1,0 +1,96 @@
+# CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    working_directory: ~/blanket
+
+    docker:
+      - image: circleci/node:10.1.0
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      # Linting/style and security checks
+      - run:
+          name: Check code style
+          # the combined `yarn lint` command only surfaces the exit code of the second command (stylelint)
+          # and will not cause the build to fail on a javascript linting error
+          command: |
+            yarn lint:js
+            yarn lint:css
+
+      # Build the project
+      - run:
+          name: Building
+          command: |
+            yarn build
+
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - dist
+
+# deploy jobs go here
+# assumes AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY are set as env variables
+  deploy:
+    working_directory: ~/blanket_deploy
+
+    docker:
+      - image: circleci/python:3.6.3
+
+    environment:
+      S3_BUCKET_NAME_PROD: blanket.bucket.name
+      S3_BUCKET_NAME_STAGING: blanket.bucket.name.staging
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ./
+
+      - run:
+          name: Install awscli
+          command: pip install awscli --upgrade --user
+
+      - run:
+          name: Deploy to production/staging
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "production" ]; then
+                ~/.local/bin/aws s3 sync . s3://$S3_BUCKET_NAME_PROD/ --exclude '.*' --exclude 'src/*' --exclude 'acf-json/.*' --exclude 'acf-json/*.txt' --exclude 'README.*' --exclude 'package.*' --exclude 'webpack.*' --exclude 'yarn.lock' --delete
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                ~/.local/bin/aws s3 sync . s3://$S3_BUCKET_NAME_STAGING/ --exclude '.*' --exclude 'src/*' --exclude 'acf-json/.*' --exclude 'acf-json/*.txt' --exclude 'README.*' --exclude 'package.*' --exclude 'webpack.*' --exclude 'yarn.lock' --delete
+            elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
+                ~/.local/bin/aws s3 sync . s3://$S3_BUCKET_NAME_STAGING/ --exclude '.*' --exclude 'src/*' --exclude 'acf-json/.*' --exclude 'acf-json/*.txt' --exclude 'README.*' --exclude 'package.*' --exclude 'webpack.*' --exclude 'yarn.lock' --delete
+            fi
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - production
+                - staging
