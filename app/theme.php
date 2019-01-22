@@ -10,7 +10,7 @@
 // if (function_exists('acf_add_options_page')) {
 //   acf_add_options_page(array(
 //     'page_title' => 'Navigation',
-//     'icon_url'   => get_template_directory_uri() . '/_/assets/img/menuicon.png',
+//     'icon_url'   => getHashedAssetWithPath('menuicon.png'),
 //     'position'   => 20
 //   ));
 // }

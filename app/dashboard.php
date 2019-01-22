@@ -2,7 +2,7 @@
 
 //login styles
 function blanket_custom_login_css() {
-  echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/dist/login.css" />';
+  echo '<link rel="stylesheet" type="text/css" href="' . getHashedAssetWithPath('login.css') . '" />';
 }
 
 function blanket_custom_loginlogo_url($url) {
@@ -68,8 +68,7 @@ function blanket_dash_cleanup() {
 }
 
 //admin css
-function blanket_admin_css()
-{
+function blanket_admin_css() {
   echo '<style type="text/css">
   #adminmenu .wp-menu-image img {
     width: 20px;
