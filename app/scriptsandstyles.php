@@ -1,6 +1,6 @@
 <?php 
 //scripts & styles
-function BLANKET_add_scripts() {
+function blanket_add_scripts() {
   //remove core-provided jQuery
   wp_deregister_script('jquery');
   // main js file
@@ -17,5 +17,5 @@ function BLANKET_add_scripts() {
     )
   );
 }
-//end BLANKET_add_scripts
+//end blanket_add_scripts
 ?>

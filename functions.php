@@ -5,33 +5,33 @@ define('BLANKET_SVG_DIR', get_template_directory_uri() . '/_/svg/');
 
 
 //actions & filters
-add_action('after_setup_theme', 'BLANKET_theme_setup');
-function BLANKET_theme_setup() {
+add_action('after_setup_theme', 'blanket_theme_setup');
+function blanket_theme_setup() {
 
   //head.php
-  add_action('init', 'BLANKET_head_cleanup');
+  add_action('init', 'blanket_head_cleanup');
 
   //dashboard.php
-  add_action('login_head', 'BLANKET_custom_login_css');
-  add_filter('login_headerurl', 'BLANKET_custom_loginlogo_url');
-  add_action('wp_dashboard_setup', 'BLANKET_remove_ataglance');
-  add_filter('upload_mimes', 'BLANKET_add_mime_types');
-  add_filter('post_thumbnail_html', 'BLANKET_remove_width_attribute', 10);
-  add_filter('image_send_to_editor', 'BLANKET_remove_width_attribute', 10);
-  add_action('admin_init', 'BLANKET_custom_editor_styles');
-  add_action('admin_menu', 'BLANKET_editor_dash_cleanup');
-  add_action('admin_head', 'BLANKET_admin_css');
+  add_action('login_head', 'blanket_custom_login_css');
+  add_filter('login_headerurl', 'blanket_custom_loginlogo_url');
+  add_action('wp_dashboard_setup', 'blanket_remove_ataglance');
+  add_filter('upload_mimes', 'blanket_add_mime_types');
+  add_filter('post_thumbnail_html', 'blanket_remove_width_attribute', 10);
+  add_filter('image_send_to_editor', 'blanket_remove_width_attribute', 10);
+  add_action('admin_init', 'blanket_custom_editor_styles');
+  add_action('admin_menu', 'blanket_editor_dash_cleanup');
+  add_action('admin_head', 'blanket_admin_css');
 
   //ajax.php
-  add_action('BLANKET_BLANKET_search', 'BLANKET_search_ajax_handler');
-  add_action('BLANKET_nopriv_BLANKET_search', 'BLANKET_search_ajax_handler');
-  add_action('BLANKET_BLANKET_fetch', 'BLANKET_fetch_ajax_handler');
-  add_action('BLANKET_nopriv_BLANKET_fetch', 'BLANKET_fetch_ajax_handler');
+  add_action('blanket_blanket_search', 'blanket_search_ajax_handler');
+  add_action('blanket_nopriv_blanket_search', 'blanket_search_ajax_handler');
+  add_action('blanket_blanket_fetch', 'blanket_fetch_ajax_handler');
+  add_action('blanket_nopriv_blanket_fetch', 'blanket_fetch_ajax_handler');
 
   //scriptsandstyles.php
-  add_action('wp_enqueue_scripts', 'BLANKET_add_scripts');
+  add_action('wp_enqueue_scripts', 'blanket_add_scripts');
 
-}//BLANKET_theme_setup
+}//blanket_theme_setup
 
 
 // requires & includes

@@ -4,7 +4,7 @@ function wps_deregister_styles() {
   wp_dequeue_style( 'wp-block-library' );
   wp_deregister_style( 'wp-block-library' );
 }
-function BLANKET_head_cleanup() {
+function blanket_head_cleanup() {
   // Originally from http://wpengineer.com/1438/wordpress-header/
   remove_action('wp_head', 'feed_links_extra', 3);
   add_action('wp_head', 'ob_start', 1, 0);
