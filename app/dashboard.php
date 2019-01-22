@@ -1,5 +1,5 @@
 <?php 
-//admin screen stuff
+
 //login styles
 function blanket_custom_login_css() {
   echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/dist/login.css" />';
@@ -30,16 +30,14 @@ function blanket_remove_width_attribute($html) {
   return $html;
 }
 
-//tinymce changes
-function blanket_custom_editor_styles() {
-  add_editor_style(get_template_directory_uri() . '/dist/editor.css');
-}
-
-function blanket_editor_dash_cleanup() {
+function blanket_remove_taxonomy_meta_boxes() {
   //remove taxonomy meta boxes
   //remove_meta_box( 'formatsdiv', array('articles', 'blog'), 'normal' );
+}
+
+function blanket_dash_cleanup() {
   global $menu;
-	// check if admin and hide these for admins
+  // check if admin and hide these for admins
   if ((current_user_can('install_themes'))) {
     $restricted = array(
       __('Posts'),
@@ -47,7 +45,7 @@ function blanket_editor_dash_cleanup() {
       
     );
   }
-	// hide these for other roles
+  // hide these for other roles
   else {
     $restricted = array(
       __('Posts'),
@@ -79,7 +77,7 @@ function blanket_admin_css()
     padding-top: 6px;
   }
   .column-lead_asset {
-    width: 6rem;
+    width: 60px;
   }
   .column-lead_asset img {
     width: 100%;

@@ -35,8 +35,7 @@ function getHashedAssetWithPath( $filename ) {
   return $name_with_path;
 }
 
-function getMetaTitle()
-{
+function getMetaTitle() {
   if (is_archive()) {
     echo post_type_archive_title() . " | ";
   } elseif (is_single() || is_page()) {
@@ -47,8 +46,7 @@ function getMetaTitle()
   bloginfo('name');
 }//getMetaTitle
 
-function getMetaDesc()
-{
+function getMetaDesc() {
   $id = get_queried_object_id();
   if (is_404()) {
     echo "404";
@@ -57,8 +55,7 @@ function getMetaDesc()
   }
 }//getMetaDesc
 
-function getMetaImage()
-{
+function getMetaImage() {
   $id = get_queried_object_id();
   if (get_the_post_thumbnail_url( $id )) {
     echo get_the_post_thumbnail_url( $id, 'card' );
@@ -67,8 +64,7 @@ function getMetaImage()
   }
 }//getMetaImage
 
-function getMetaURL()
-{
+function getMetaURL() {
   $id = get_queried_object_id();
   if (is_home()) {
     echo get_bloginfo('url');

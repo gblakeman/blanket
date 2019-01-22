@@ -12,7 +12,6 @@ function blanket_add_scripts() {
     'main-js',
     'localized',
     array(
-      'siteurl' => get_bloginfo('url'),
       'ajaxURL' => get_template_directory_uri() . '/app/custom-ajax-handler.php',
     )
   );

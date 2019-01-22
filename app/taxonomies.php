@@ -1,11 +1,8 @@
 <?php
 
-// create taxonomies
-add_action('init', 'create_taxonomies', 0);
+function blanket_create_taxonomies() {
 
-function create_taxonomies() {
-
-	// News Category taxonomy, attached to news
+  // News Category taxonomy, attached to news
   // $labels = array(
   //   'name' => _x('News Categories', 'taxonomy general name'),
   //   'singular_name' => _x('News Category', 'taxonomy singular name'),
