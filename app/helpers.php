@@ -53,7 +53,6 @@ function getView( $filename ) { // with or without path
   return get_template_part('views/' . $clean_filename);
 }
 
-
 function getMetaTitle() {
   if (is_archive()) {
     echo post_type_archive_title() . " | ";
