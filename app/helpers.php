@@ -38,13 +38,19 @@ function getHashedAssetWithPath( $filename ) {
 function getPartial( $filename ) { // with or without path
   $clean_filename = ltrim($filename, '/views/partials/');
   $clean_filename = rtrim($clean_filename, '.php');
-  return get_template_part('views/partials/'.$clean_filename);
+  return get_template_part('views/partials/' . $clean_filename);
+}
+
+function getSvg( $filename ) { // with or without path
+  $clean_filename = ltrim($filename, '/views/partials/svg/');
+  $clean_filename = rtrim($clean_filename, '.svg');
+  return get_template_part('views/partials/svg/' . $clean_filename . '.svg');
 }
 
 function getView( $filename ) { // with or without path
   $clean_filename = ltrim($filename, '/views/');
   $clean_filename = rtrim($clean_filename, '.php');
-  return get_template_part('views/'.$clean_filename);
+  return get_template_part('views/' . $clean_filename);
 }
 
 

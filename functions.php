@@ -1,8 +1,5 @@
 <?php
 
-// constants
-define('BLANKET_SVG_DIR', get_template_directory_uri() . '/views/partials/svg/');
-
 // actions & filters
 add_action('after_setup_theme', 'blanket_theme_setup');
 
