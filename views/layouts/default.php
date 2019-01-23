@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<?php get_template_part('views/partials/head') ?>
+<?php getPartial('head') ?>
 
 <body>
   <?php // visual header ?>
-  <?php get_template_part('views/partials/header') ?>
+  <?php getPartial('header') ?>
 
   <?php // page content ?>
   <div id="contentWrap">
     <div class="content">
-      <?php get_template_part('views/home'); ?>
+      <?php getView('home'); ?>
     </div><!--content-->
   </div><!--contentWrap-->
 
   <?php // visual footer ?>
-  <?php get_template_part('views/partials/footer'); ?>
+  <?php getPartial('footer'); ?>
 
   <?php // base scripts got last ?>
-  <?php get_template_part('views/partials/base'); ?>
+  <?php getPartial('base'); ?>
 </body>
 </html>
