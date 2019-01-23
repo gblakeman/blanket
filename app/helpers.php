@@ -35,6 +35,19 @@ function getHashedAssetWithPath( $filename ) {
   return $name_with_path;
 }
 
+function getPartial( $filename ) { // with or without path
+  $clean_filename = ltrim($filename, '/views/partials/');
+  $clean_filename = rtrim($clean_filename, '.php');
+  return get_template_part('views/partials/'.$clean_filename);
+}
+
+function getView( $filename ) { // with or without path
+  $clean_filename = ltrim($filename, '/views/');
+  $clean_filename = rtrim($clean_filename, '.php');
+  return get_template_part('views/'.$clean_filename);
+}
+
+
 function getMetaTitle() {
   if (is_archive()) {
     echo post_type_archive_title() . " | ";
