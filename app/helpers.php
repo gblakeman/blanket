@@ -44,7 +44,8 @@ function getPartial( $filename ) { // with or without path
 function getSvg( $filename ) { // with or without path
   $clean_filename = ltrim($filename, '/views/partials/svg/');
   $clean_filename = rtrim($clean_filename, '.svg');
-  return get_template_part('views/partials/svg/' . $clean_filename . '.svg');
+  $full_path_with_filename = get_template_directory() . '/views/partials/svg/' . $clean_filename . '.svg';
+  echo file_get_contents($full_path_with_filename);
 }
 
 function getView( $filename ) { // with or without path
