@@ -36,23 +36,20 @@ function getHashedAssetWithPath( $filename ) {
 }
 
 function getView( $filename ) { // with or without path
-  $clean_filename = preg_replace('/((\/*views)\/)/', '', $filename);
-  $clean_filename = ltrim($clean_filename, '/');
-  $clean_filename = basename($clean_filename, '.php');
+  $clean_filename = preg_replace('/(^\/*views\/)|(^\/)/', '', $filename);
+  $clean_filename = preg_replace('/\.php$/', '', $clean_filename);
   return get_template_part('views/' . $clean_filename);
 }
 
 function getPartial( $filename ) { // with or without path
-  $clean_filename = preg_replace('/((\/*views)*\/*(partials)\/)/', '', $filename);
-  $clean_filename = ltrim($clean_filename, '/');
-  $clean_filename = basename($clean_filename, '.php');
+  $clean_filename = preg_replace('/(^\/*views\/partials\/)|(^\/*partials\/)|(^\/)/', '', $filename);
+  $clean_filename = preg_replace('/\.php$/', '', $clean_filename);
   return get_template_part('views/partials/' . $clean_filename);
 }
 
 function getSvg( $filename ) { // with or without path
-  $clean_filename = preg_replace('/((\/*views)*\/*(partials)*\/*(svg)\/)/', '', $filename);
-  $clean_filename = ltrim($clean_filename, '/');
-  $clean_filename = basename($clean_filename, '.svg');
+  $clean_filename = preg_replace('/(^\/*views\/partials\/svg\/)|(^\/*partials\/svg\/)|(^\/*svg\/)|(^\/)/', '', $filename);
+  $clean_filename = preg_replace('/\.svg$/', '', $clean_filename);
   $full_path_with_filename = get_template_directory() . '/views/partials/svg/' . $clean_filename . '.svg';
   echo file_get_contents($full_path_with_filename);
 }
